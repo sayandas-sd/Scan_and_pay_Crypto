@@ -1,7 +1,8 @@
-import { useNavigate } from "react-router-dom";
-import { memo } from "react";
-import { Transaction } from "../pages/Transaction";
-import { CryptoConnect } from "../pages/CryptoConnect";
+import { Link, useNavigate } from "react-router-dom";
+import { CryptoConnect } from "../pages/Cryptoconnect";
+import image from '../assets/shield.png'
+
+
 
 export const Appbar = () => {
     const navigate = useNavigate();
@@ -14,48 +15,64 @@ export const Appbar = () => {
         navigate("/wallet");
     }
 
-    
+    const transactionClick = ()=>{
+        navigate("/transaction");
+    }
+
+
     return (
-        <div className="border-b flex justify-evenly items-center md:justify-around p-4 cursor-pointer">
-            <div className="flex justify-center flex-col">
-                <Logo/>
-            </div>
-            <div className="flex justify-center flex-col hidden lg:block">
-                <Home onClick={homeClick} name="Home" />
-            </div>
-            <div className="flex justify-center relative flex-col">
-                <WalletIcon onClick={walletClick} name="Wallet"/>
-            </div>
-            <div className="flex justify-center flex-col">
-                <Transaction />
-            </div>
-            <div className="flex justify-center flex-col">
-                <CryptoConnect />
+        <nav className="bg-white border-b cursor-pointer">
+            <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
+            <Link to="/dashboard" className="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src={image} className="h-12" alt="Flowbite Logo" />
+                <span className="self-center text-2xl font-semibold ">caniFi</span>
+            </Link>
+    
+            <div className="hidden w-full md:block md:w-auto" id="navbar-default">
+                <ul className="font-medium flex flex-col items-center p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white ">
+                    <li>
+                        <div className="flex justify-center flex-col hidden lg:block">
+                                <Home onClick={homeClick} name="Home" />
+                        </div>
+                    </li>
+                    <li>
+                        <div className="flex justify-center relative flex-col">
+                                <WalletIcon onClick={walletClick} name="Wallet"/>
+                        </div>
+                    </li>
+                    <li>
+                        <div className="flex justify-center flex-col">
+                                <TransactIcon onClick={transactionClick} name="Transaction" />
+                        </div>
+                    </li>   
+                    <li>
+                        <div className="flex justify-center flex-col">
+                            <CryptoConnect />
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
+    </nav>
     );
 };
+
+
+
+
 
 interface Type {
     onClick: ()=>void;
     name: string;
 }
 
-const Logo = memo(() => {
-    return (
-        <div>
-            logo
-        </div>
-    );
-});
-
 
 const Home = ({onClick, name}: Type) => {
-    console.log("home render");
+    
     return <div>
         <div className="flex justify-center" onClick={onClick}>
 
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6 mb-1">
             <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
         </svg>
 
@@ -83,3 +100,21 @@ const WalletIcon = ({onClick, name}: Type) => {
         </div>
     </div>
 };
+
+const TransactIcon = ({onClick, name}: Type) => {
+    console.log("wallet render");
+    return <div>
+       <div className="flex justify-center" onClick={onClick}>
+        
+       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />
+       </svg>
+
+            <div className="px-2 flex justify-center flex-col">
+                {name}
+            </div>
+        </div>
+    </div>
+};
+
+
