@@ -10,13 +10,7 @@ export const Wallet = () => {
     const [name, setName] = useState<string | null>(null);
     const [walletQr, setWalletQr] = useState('');
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setName('$ 0.5021 SepoliaETH');
-    }, 4000);
-    
-    return () => clearTimeout(timer);
-  }, []);
+  
 
     const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -47,14 +41,7 @@ export const Wallet = () => {
     };
     
 
-    useEffect(()=>{
-      const walletQrCOde = setTimeout(async () => {
-
-              const response = await QRCode.toDataURL('0xA3c5A29ae6c844A4943f2D6c4D49216118E2a1E0');
-              setWalletQr(response)
     
-      }, 4000);
-    })
 
 
 
@@ -69,15 +56,11 @@ export const Wallet = () => {
                         </div>
                         <div className="flex justify-center text-2xl font-bold">
                         
-                        {name || "Loading..."}
+                       
                            
                         </div>
                         <div className="flex justify-center">
-                          {walletQr ? (
-                                <a href={walletQr} download>
-                                    <img src={walletQr} alt="Generated QR" />
-                                </a>
-                            ): 'loading...'}
+                          
 
                         </div>
                     </div>
