@@ -7,17 +7,14 @@ import { Wallet } from './pages/Wallet'
 import { TransactionWallet } from './pages/Transaction'
 
 
-
-
-
 function App() {
  
   return (
     <>
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/signin" element={<Signin />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/wallet" element={<Wallet />} />
           <Route path="/transaction" element={<TransactionWallet />} />
